@@ -2,25 +2,26 @@ import streamlit as st
 import csv
 import os
 import pandas as pd
-from datetime import datetime
 import json
 import tempfile
 import gspread
+import cloudinary
+import cloudinary.uploader
+import qrcode
+import streamlit as st
+import streamlit_authenticator as stauth
+import yaml
+import streamlit as st
+import streamlit_authenticator as stauth
+from datetime import datetime
 from google.oauth2.service_account import Credentials
 from oauth2client.service_account import ServiceAccountCredentials
 from gspread_formatting import *
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
-import cloudinary
-import cloudinary.uploader
-import qrcode
 from io import BytesIO
-import streamlit as st
-import streamlit_authenticator as stauth
-import yaml
 from yaml.loader import SafeLoader
-import streamlit as st
-import streamlit_authenticator as stauth
+
 
 # --- STEP 1: LOAD DATA ---
 credentials = st.secrets["credentials"].to_dict()
