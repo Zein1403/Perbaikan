@@ -22,22 +22,16 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from io import BytesIO
 from yaml.loader import SafeLoader
 
-
-# --- STEP 1: LOAD DATA ---
+# --- Login ---
 credentials = st.secrets["credentials"].to_dict()
-
-# --- STEP 2: DEFINE THE AUTHENTICATOR ---
 authenticator = stauth.Authenticate(
     credentials,
     st.secrets["cookie"]["name"],
     st.secrets["cookie"]["key"],
     st.secrets["cookie"]["expiry_days"]
 )
-
-# --- STEP 3: USE THE AUTHENTICATOR (ONLY ONCE!) ---
 authenticator.login(location='main')
 
-# --- STEP 4: THE GATEKEEPER ---
 if st.session_state["authentication_status"] is False:
     # This runs ONLY if they typed the wrong password
     st.error("Username/password salah. Silakan hubungi admin jika lupa.")
@@ -47,12 +41,11 @@ elif st.session_state["authentication_status"] is None:
     # This runs when they haven't tried to log in yet
     st.warning("Silakan masukkan username dan password untuk mengakses sistem.")
     st.stop()
-# --- STEP 5: YOUR APP (ONLY RUNS IF LOGGED IN) ---
+
 authenticator.logout("Logout", "sidebar")
 st.title("Selamat Datang di Sistem Inventaris")
 st.write(f"Logged in as: **{st.session_state['name']}**")
 
-# ... Put your tables, inputs, and business logic here ...
 st.set_page_config(
     page_title=" Inventoria Untuk DIT",   # Title shown in browser tab
     page_icon="logo-bmkg.png",                                # Favicon (emoji or image path)
@@ -67,9 +60,9 @@ SCOPES = [
     "https://www.googleapis.com/auth/drive.file",
 ]
 
-spreadsheet_id_1 = "16TyrN_dLzqCCPnc15K8REKxzGF4bbY6dZzU8QLzo1kA"
-FOLDER_ID = "1Nfz9wDdW6SjY_2eXY_crxWLZUTJFt_IX"
-LOG_SPREADSHEET_ID="1jXn8ijgcqHyohvTOmwGVbZJjpeuGV5JDqz1igtd-CNo"
+#spreadsheet_id_1 = "16TyrN_dLzqCCPnc15K8REKxzGF4bbY6dZzU8QLzo1kA"
+#FOLDER_ID = "1Nfz9wDdW6SjY_2eXY_crxWLZUTJFt_IX"
+#LOG_SPREADSHEET_ID="1jXn8ijgcqHyohvTOmwGVbZJjpeuGV5JDqz1igtd-CNo"
 
 cloudinary.config(
     cloud_name=st.secrets["cloudinary"]["cloud_name"],
