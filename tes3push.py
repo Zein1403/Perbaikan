@@ -59,11 +59,6 @@ SCOPES = [
     "https://www.googleapis.com/auth/drive",
     "https://www.googleapis.com/auth/drive.file",
 ]
-
-#spreadsheet_id_1 = "16TyrN_dLzqCCPnc15K8REKxzGF4bbY6dZzU8QLzo1kA"
-#FOLDER_ID = "1Nfz9wDdW6SjY_2eXY_crxWLZUTJFt_IX"
-#LOG_SPREADSHEET_ID="1jXn8ijgcqHyohvTOmwGVbZJjpeuGV5JDqz1igtd-CNo"
-
 cloudinary.config(
     cloud_name=st.secrets["cloudinary"]["cloud_name"],
     api_key=st.secrets["cloudinary"]["api_key"],
@@ -461,9 +456,11 @@ menu = st.selectbox(
     "Menu",
     ["Tambahkan Inventori", "Menggunakan atau Mengirimkan barang", "Lihat Data"],
 )
+daftar_gudang = list(FLOOR_TO_SHEET.keys())
 
 if menu == "Tambahkan Inventori":
     st.subheader("➕ Tambah Barang + 📤 Upload Gambar")
+    tempat_display = st.selectbox("Pilih Gudang Tujuan", daftar_gudang)
     nama = st.text_input("Nama Barang")
     jumlah = st.number_input("Jumlah", min_value=1, step=1)
     
