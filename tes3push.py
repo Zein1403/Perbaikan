@@ -79,7 +79,7 @@ client = gspread.authorize(creds)
 # Replace with your spreadsheet ID
 SPREADSHEET_ID = st.secrets["gcp"]["spreadsheet_id_1"]
 sheet = client.open_by_key(SPREADSHEET_ID).sheet1
-
+LOG_SPREADSHEET_ID_1 = st.secrets["gcp"]["LOG_SPREADSHEET_ID"]
 
 if not SPREADSHEET_ID or not FOLDER_ID:
     st.warning("Set secrets: spreadsheet_id and drive_folder_id. See deploy checklist below.")
