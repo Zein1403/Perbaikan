@@ -88,7 +88,7 @@ if not SPREADSHEET_ID or not FOLDER_ID:
 gs_client = gspread.authorize(creds)
 drive_service = build("drive", "v3", credentials=creds)
 spreadsheet = gs_client.open_by_key(SPREADSHEET_ID)
-log_spreadsheet = gs_client.open_by_key(LOG_SPREADSHEET_ID)
+log_spreadsheet = gs_client.open_by_key(LOG_SPREADSHEET_ID_1)
 
 # Map display names -> worksheet names
 FLOOR_TO_SHEET = {
